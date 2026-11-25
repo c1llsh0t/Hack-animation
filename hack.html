@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>SYSTEM</title>
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:Consolas,monospace;color:#0f0}
+canvas{position:fixed;inset:0}
+#t{position:fixed;left:5%;top:8%;width:90%;height:70%;white-space:pre-wrap;font-size:18px;text-shadow:0 0 6px #0f0;z-index:2;overflow:hidden}
+#w{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;display:none;text-align:center;font-size:64px;color:#f00;text-shadow:0 0 20px #f00;animation:b .3s infinite}
+#bar{position:fixed;left:10%;bottom:10%;width:80%;height:28px;border:2px solid #0f0;z-index:2}
+#p{height:100%;width:0;background:#0f0}
+#pc{position:fixed;left:10%;bottom:calc(10% + 36px);z-index:2;font-size:20px}
+@keyframes b{50%{opacity:0}}
+</style></head><body>
+<canvas id="c"></canvas>
+<div id="t"></div>
+<div id="pc">UPLOADING FILES... 0%</div>
+<div id="bar"><div id="p"></div></div>
+<div id="w">⚠ SYSTEM HACKED ⚠</div>
+<script>
+const c=document.getElementById('c'),x=c.getContext('2d');
+function rs(){c.width=innerWidth;c.height=innerHeight}rs();onresize=rs;
+const f=16;let d=Array(Math.ceil(innerWidth/f)).fill(1);
+setInterval(()=>{x.fillStyle='rgba(0,0,0,.08)';x.fillRect(0,0,c.width,c.height);x.fillStyle='#0a0';x.font=f+'px monospace';
+d.forEach((y,i)=>{x.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*f,y*f);if(y*f>c.height&&Math.random()>.975)d[i]=0;d[i]++})},40);
+const L=["> Initialisiere Verbindung zu 192.168.0."+(Math.random()*255|0)+" ...","> Umgehe Firewall ........ OK","> Entschlüssele Passwörter ... OK","> Zugriff auf Webcam ...... OK","> Lade Browserverlauf herunter ... OK","> Kopiere Dokumente/ Bilder/ Hausaufgaben/ ...","> Root-Zugriff erhalten","> Installiere Payload.exe ..."];
+const t=document.getElementById('t');let li=0;
+const iv=setInterval(()=>{if(li<L.length){t.textContent+=L[li++]+"\n"}else{t.textContent+=Array.from({length:60},()=>"0123456789ABCDEF"[Math.random()*16|0]).join('')+"\n"}t.scrollTop=1e9},600);
+const s=Date.now(),D=10000;
+const pi=setInterval(()=>{let k=Math.min(100,(Date.now()-s)/D*100);document.getElementById('p').style.width=k+'%';document.getElementById('pc').textContent='UPLOADING FILES... '+(k|0)+'%';
+if(k>=80)document.getElementById('w').style.display='block';
+if(k>=100){clearInterval(pi);clearInterval(iv);location.href='https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&rel=0'}},100);
+</script></body></html>
